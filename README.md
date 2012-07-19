@@ -1,6 +1,7 @@
 # MailValidator
 
-TODO: Write a gem description
+Validation of email addresses via the excellent Mail gem that is
+available in all Rails 3 applications.
 
 ## Installation
 
@@ -18,7 +19,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+This gem required Ruby 1.9, and is tested against MRI, JRuby, and
+Rubinius using Travis CI.
+
+You will need to be using Rails 3 to make use of this validator, as it
+is built on top of ActiveModel, which was introduced in Rails 3.
 
 ## Contributing
 
