@@ -1,4 +1,4 @@
-# MailValidator
+# ValidateAsEmail
 
 Validation of email addresses via the excellent Mail gem that is
 available in all Rails 3 applications.
@@ -7,7 +7,7 @@ available in all Rails 3 applications.
 
 Add this line to your application's Gemfile:
 
-    gem 'mail_validator'
+    gem 'validate_as_email'
 
 And then execute:
 
@@ -15,7 +15,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install mail_validator
+    $ gem install validate_as_email
 
 ## Usage
 

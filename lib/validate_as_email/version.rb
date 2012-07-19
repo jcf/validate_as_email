@@ -1,3 +1,3 @@
-module MailValidator
+module ValidateAsEmail
   VERSION = '1.0.0'
 end

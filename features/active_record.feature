@@ -5,7 +5,7 @@ Feature: ActiveRecord validation
     """
     require 'logger'
     require 'active_record'
-    require 'mail_validator'
+    require 'validate_as_email'
 
     setup_active_record
 

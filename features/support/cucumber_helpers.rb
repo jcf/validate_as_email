@@ -7,7 +7,7 @@ def setup_active_record
   ActiveRecord::Base.establish_connection(
     adapter: 'sqlite3',
     dbfile:  ':memory:',
-    database: 'mail_validator_test'
+    database: 'validate_as_email_test'
   )
 
   ActiveRecord::Schema.define do

@@ -1,6 +1,6 @@
 $: << 'lib'
 
-require 'mail_validator'
+require 'validate_as_email'
 require 'rspec/rails/extensions/active_record/base'
 
 Dir[File.expand_path('../support/**/*.rb', __FILE__)].each(&method(:require))

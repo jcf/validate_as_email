@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path('../lib/mail_validator/version', __FILE__)
+require File.expand_path('../lib/validate_as_email/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ['James Conroy-Finn']
@@ -10,9 +10,9 @@ Gem::Specification.new do |gem|
 
   gem.files         = Dir['lib/**/*.rb'] << 'README.md'
   gem.test_files    = Dir['spec/**/*_spec.rb']
-  gem.name          = 'mail_validator'
+  gem.name          = 'validate_as_email'
   gem.require_paths = ['lib']
-  gem.version       = MailValidator::VERSION
+  gem.version       = ValidateAsEmail::VERSION
 
   gem.add_dependency 'activemodel', '~> 3'
   gem.add_dependency 'mail', '~> 2'

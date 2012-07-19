@@ -4,7 +4,7 @@ Feature: ActiveModel validation
     Given a file named "active_model_validation.rb" with:
     """
     require 'active_model'
-    require 'mail_validator'
+    require 'validate_as_email'
 
     class Person
       include ActiveModel::Validations
