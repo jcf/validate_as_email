@@ -22,4 +22,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'aruba', '~> 0.4'
 
   gem.add_development_dependency 'activerecord', '~> 3'
+  gem.add_development_dependency 'sqlite3', '~> 1.3'
 end
