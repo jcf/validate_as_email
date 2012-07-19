@@ -1,4 +1,4 @@
-# ValidateAsEmail [![Build Status](https://secure.travis-ci.org/evently/validate_as_email.png?branch=master)](http://travis-ci.org/evently/validate_as_email)
+# ValidateAsEmail [![Build Status](https://secure.travis-ci.org/evently/validate_as_email.png?branch=master)](http://travis-ci.org/evently/validate_as_email) [![CodeClimate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/evently/validate_as_email)
 
 Validation of email addresses via the excellent Mail gem that is
 available in all Rails 3 applications.
