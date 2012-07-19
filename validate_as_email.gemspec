@@ -20,4 +20,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rspec-rails', '~> 2.11'
   gem.add_development_dependency 'cucumber', '~> 1.2'
   gem.add_development_dependency 'aruba', '~> 0.4'
+
+  gem.add_development_dependency 'activerecord', '~> 3'
 end
