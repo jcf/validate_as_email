@@ -25,6 +25,54 @@ Rubinius using Travis CI.
 You will need to be using Rails 3 to make use of this validator, as it
 is built on top of ActiveModel, which was introduced in Rails 3.
 
+### Usage with ActiveModel
+
+``` ruby
+class Person
+  include ActiveModel::Validations
+  validates_as_email :email
+  attr_accessor :email
+end
+
+# OR
+
+class Person
+  include ActiveModel::Validations
+  validates :email, email: true
+  attr_accessor :email
+end
+```
+
+### Usage with ActiveRecord
+
+``` ruby
+class Person < ActiveRecord::Base
+  validates_as_email :email
+  attr_accessor :email
+end
+
+# OR
+
+class Person < ActiveRecord::Base
+  validates :email, email: true
+  attr_accessor :email
+end
+```
+
+### Built-in RSpec Matcher
+
+``` ruby
+class Person < ActiveRecord::Base
+  validates_as_email :email
+  attr_accessor :email
+end
+
+describe Person do
+  it { should have_a_valid_email_address_for(:email) }
+  it { should_not have_a_valid_email_address_for(:email) }
+end
+```
+
 ## Contributing
 
 1. Fork it
