@@ -12,7 +12,7 @@ rvm:
 gemfile:
   - gemfiles/activerecord-3.0.gemfile
   - gemfiles/activerecord-3.1.gemfile
-  - gemfiles/activerecord-master.gemfile
+  - gemfiles/activerecord-3.2.gemfile
 matrix:
   allow_failures:
     - rvm: jruby-19mode
