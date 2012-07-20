@@ -18,6 +18,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'activemodel', '~> 3'
   gem.add_dependency 'mail', '~> 2'
 
+  gem.add_development_dependency 'rake', '~> 0.9.2'
   gem.add_development_dependency 'rspec-rails', '~> 2.11'
   gem.add_development_dependency 'cucumber', '~> 1.2'
   gem.add_development_dependency 'aruba', '~> 0.4'
