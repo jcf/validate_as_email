@@ -1,6 +1,5 @@
 language: ruby
 bundler_args: --without extras
-script: rake appraisal
 rvm:
   - 1.9.2
   - 1.9.3
