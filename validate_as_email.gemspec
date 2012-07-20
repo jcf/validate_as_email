@@ -14,6 +14,7 @@ Gem::Specification.new do |gem|
   gem.name          = 'validate_as_email'
   gem.require_paths = ['lib']
   gem.version       = ValidateAsEmail::VERSION
+  gem.platform      = Gem::Platform::RUBY
 
   gem.add_dependency 'activemodel', '~> 3'
   gem.add_dependency 'mail', '~> 2'
