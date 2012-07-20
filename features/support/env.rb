@@ -1,6 +1,11 @@
 require 'bundler'
 Bundler.setup
 
+begin
+  require 'simplecov'
+rescue LoadError
+end
+
 require 'aruba/cucumber'
 
 # Borrowed from VCR
