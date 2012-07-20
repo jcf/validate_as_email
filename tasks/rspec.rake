@@ -1,6 +1,6 @@
 require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new
 
-desc 'Run specs'
-RSpec::Core::RakeTask.new do |t|
+RSpec::Core::RakeTask.new('spec:strict') do |t|
   t.ruby_opts = '-w'
 end

@@ -1,13 +1,18 @@
 language: ruby
-
 bundler_args: --without extras
-
+script:
+  - bundle
+  - rake appraisal:install
+  - rake appraisal
 rvm:
   - 1.9.2
   - 1.9.3
   - jruby-19mode
   - rbx-19mode
-
+gemfile:
+  - gemfiles/activerecord-3.0.gemfile
+  - gemfiles/activerecord-3.1.gemfile
+  - gemfiles/activerecord-master.gemfile
 matrix:
   allow_failures:
     - rvm: jruby-19mode

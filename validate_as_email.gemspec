@@ -21,6 +21,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rspec-rails', '~> 2.11'
   gem.add_development_dependency 'cucumber', '~> 1.2'
   gem.add_development_dependency 'aruba', '~> 0.4'
+  gem.add_development_dependency 'appraisal', '~> 0.4'
 
   gem.add_development_dependency 'activerecord', '~> 3'
   gem.add_development_dependency 'sqlite3', '~> 1.3'
