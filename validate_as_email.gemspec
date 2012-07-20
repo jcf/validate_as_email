@@ -8,8 +8,9 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{The ultimate Rails 3 email validator. Powered by the Mail gem.}
   gem.homepage      = 'https://github.com/evently/mail_validator'
 
-  gem.files         = Dir['lib/**/*.rb'] << 'README.md'
-  gem.test_files    = Dir['spec/**/*_spec.rb']
+  gem.files         = Dir['lib/**/*'] + ['README.md', 'LICENSE']
+  gem.test_files    = Dir['{features,spec}/**/*']
+
   gem.name          = 'validate_as_email'
   gem.require_paths = ['lib']
   gem.version       = ValidateAsEmail::VERSION
