@@ -61,7 +61,13 @@ end
 
 ### Built-in RSpec Matcher
 
+The custom matcher will be loaded automatically if RSpec is loaded
+first. Otherwise, you'll need to require the RSpec matcher manually
+using `require 'validate_as_email/rspec'`.
+
 ``` ruby
+require 'validate_as_email/rspec'
+
 class Person < ActiveRecord::Base
   validates_as_email :email
   attr_accessor :email
