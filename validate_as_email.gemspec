@@ -16,7 +16,7 @@ Gem::Specification.new do |gem|
   gem.version       = ValidateAsEmail::VERSION
   gem.platform      = Gem::Platform::RUBY
 
-  gem.add_dependency 'activemodel', '~> 3'
+  gem.add_dependency 'activemodel', '>= 3'
   gem.add_dependency 'mail', '~> 2'
 
   gem.add_development_dependency 'rake', '~> 0.9.2'
@@ -25,6 +25,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'aruba', '~> 0.4'
   gem.add_development_dependency 'appraisal', '~> 0.4'
 
-  gem.add_development_dependency 'activerecord', '~> 3'
+  gem.add_development_dependency 'activerecord', '>= 3'
   gem.add_development_dependency 'sqlite3', '~> 1.3'
 end
