@@ -1,3 +1,7 @@
+# v2.0.1
+
+- Update VERSION constant to reflect tagged version.
+
 # v2.0.0
 
 - Add formal support for Rails 4.
