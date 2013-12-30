@@ -11,8 +11,5 @@ gem 'sqlite3', platform: :ruby
 
 group :test do
   gem 'rspec-rails', '~> 2.14'
-  gem 'cucumber', '~> 1.3'
-  gem 'aruba', '~> 0.5'
-
   gem 'simplecov', '~> 0.7'
 end
