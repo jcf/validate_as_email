@@ -1,3 +1,7 @@
+# v2.1.0
+
+- Only autoload RSpec matcher if `RSpec::Matchers` has been defined.
+
 # v2.0.1
 
 - Update VERSION constant to reflect tagged version.
