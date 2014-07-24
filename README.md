@@ -61,6 +61,29 @@ class Person < ActiveRecord::Base
 end
 ```
 
+### Specifying a Custom, Translated Error
+
+In i18n config:
+
+``` yaml
+en-US:
+  errors:
+    messages:
+      email: must be a valid email address
+```
+
+In ruby:
+``` ruby
+# This should probably be in an initializer
+ActiveModel::Validations::EmailValidator.default_error = :email
+
+class Person
+  include ActiveModel::Validations
+  validates :email, presence: true, email: true
+  attr_accessor :email
+end
+```
+
 ### Built-in RSpec Matcher
 
 The custom matcher will be loaded automatically if RSpec is loaded
