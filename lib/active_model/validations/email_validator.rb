@@ -6,6 +6,16 @@ module ActiveModel
     class EmailValidator < EachValidator
       attr_reader :record, :attribute, :value, :email, :tree
 
+      DEFAULT_ERROR = :invalid
+
+      attr_accessor :default_error
+
+      class << self
+        @default_error = DEFAULT_ERROR
+        attr_accessor :default_error
+      end
+
+
       def validate_each(record, attribute, value)
         @record, @attribute, @value = record, attribute, value
 
@@ -15,6 +25,10 @@ module ActiveModel
         add_error unless valid?
       rescue Mail::Field::ParseError
         add_error
+      end
+
+      def default_error
+        @default_error || self.class.default_error
       end
 
       private
@@ -35,7 +49,7 @@ module ActiveModel
         if message = options[:message]
           record.errors[attribute] << message
         else
-          record.errors.add(attribute, :invalid)
+          record.errors.add(attribute, default_error)
         end
       end
     end
