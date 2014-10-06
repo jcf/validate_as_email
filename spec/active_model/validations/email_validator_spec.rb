@@ -72,5 +72,13 @@ describe ActiveModel::Validations::EmailValidator do
         person.errors.to_a.should == ['Email is kinda odd looking']
       end
     end
+
+    context 'when raising Mail::Field::ParseError' do
+      it 'adds invalid message error' do
+        described_class.any_instance.stub(:valid?).and_raise(Mail::Field::ParseError.new(Mail::AddressList, "", nil))
+        validator.validate(person)
+        expect(person.errors.to_a).to  match_array ['Email is invalid']
+      end
+    end
   end
 end
