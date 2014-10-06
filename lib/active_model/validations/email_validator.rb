@@ -21,7 +21,8 @@ module ActiveModel
 
       def valid?
         !!(domain_and_address_present? &&
-           domain_has_more_than_one_atom?)
+           domain_has_more_than_one_atom? &&
+           local_plus_domain_equals_to_value?)
       end
 
       def domain_and_address_present?
@@ -30,6 +31,10 @@ module ActiveModel
 
       def domain_has_more_than_one_atom?
         parse.domain.split('.').length > 1
+      end
+
+      def local_plus_domain_equals_to_value?
+        parse.local + "@" + parse.domain == value
       end
 
       def add_error
