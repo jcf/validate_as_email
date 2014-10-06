@@ -21,7 +21,7 @@ describe ActiveModel::Validations::EmailValidator do
 
       it 'does not add errors' do
         validator.validate(person)
-        person.errors.to_a.should == []
+        expect(person.errors.to_a).to be_empty
       end
     end
 
@@ -36,7 +36,7 @@ describe ActiveModel::Validations::EmailValidator do
 
       it 'skips adding errors is email is nil' do
         validator.validate(person)
-        person.errors.to_a.should == []
+        expect(person.errors.to_a).to be_empty
       end
     end
 
@@ -51,14 +51,14 @@ describe ActiveModel::Validations::EmailValidator do
 
       it 'skips adding errors is email is nil' do
         validator.validate(person)
-        person.errors.to_a.should == []
+        expect(person.errors.to_a).to be_empty
       end
     end
 
     context 'with no message provided' do
       it 'adds a symbol to errors for I18n lookup' do
         validator.validate(person)
-        person.errors.to_a.should == ['Email is invalid']
+        expect(person.errors.to_a).to match_array ['Email is invalid']
       end
     end
 
@@ -69,7 +69,7 @@ describe ActiveModel::Validations::EmailValidator do
 
       it 'uses the message you specify' do
         validator.validate(person)
-        person.errors.to_a.should == ['Email is kinda odd looking']
+        expect(person.errors.to_a).to match_array ['Email is kinda odd looking']
       end
     end
 
@@ -77,7 +77,7 @@ describe ActiveModel::Validations::EmailValidator do
       it 'adds invalid message error' do
         described_class.any_instance.stub(:valid?).and_raise(Mail::Field::ParseError.new(Mail::AddressList, "", nil))
         validator.validate(person)
-        expect(person.errors.to_a).to  match_array ['Email is invalid']
+        expect(person.errors.to_a).to match_array ['Email is invalid']
       end
     end
   end
