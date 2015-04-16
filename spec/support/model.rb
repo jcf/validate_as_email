@@ -11,10 +11,6 @@ class Model
     @attributes[key]
   end
 
-  def email
-    @attributes[:email]
-  end
-
   def email=(email)
     @attributes[:email] = email
   end

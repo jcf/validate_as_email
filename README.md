@@ -1,7 +1,9 @@
-# ValidateAsEmail [![Build Status](https://secure.travis-ci.org/evently/validate_as_email.png?branch=master)](http://travis-ci.org/evently/validate_as_email) [![CodeClimate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/evently/validate_as_email)
+# Validate as Email
+
+[![Build Status](https://travis-ci.org/listora/validate_as_email.png?branch=master)](https://travis-ci.org/listora/validate_as_email)
 
 Validation of email addresses via the excellent Mail gem that is
-available in all Rails 3 applications.
+available in all Rails 3 and 4 applications.
 
 ## Installation
 
@@ -19,11 +21,11 @@ Or install it yourself as:
 
 ## Usage
 
-This gem required Ruby 1.9, and is tested against MRI, JRuby, and
-Rubinius using Travis CI.
+This gem is tested against MRI, JRuby, and Rubinius using Travis CI.
 
-You will need to be using Rails 3 to make use of this validator, as it
-is built on top of ActiveModel, which was introduced in Rails 3.
+You will need to be using Rails 3 or greater to make use of this
+validator, as it is built on top of ActiveModel, which was introduced in
+Rails 3.
 
 ### Usage with ActiveModel
 
