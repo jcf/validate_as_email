@@ -1,5 +1,6 @@
 *.gem
 *.rbc
+*.swp
 *emfile.lock
 .bundle
 .config
