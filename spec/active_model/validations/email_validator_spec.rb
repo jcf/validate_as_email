@@ -80,31 +80,5 @@ describe ActiveModel::Validations::EmailValidator do
         expect(person.errors.to_a).to match_array ['Email is invalid']
       end
     end
-
-    context 'with a custom default error' do
-      context 'defined globally' do
-        before do
-          # This leaks across tests, so do it explicitly in a before/after
-          ActiveModel::Validations::EmailValidator.default_error = :exclusion
-        end
-
-        it 'translates the specified error' do
-          validator.validate(person)
-          person.errors.to_a.should == ['Email is reserved']
-        end
-
-        after do
-          ActiveModel::Validations::EmailValidator.default_error = ActiveModel::Validations::EmailValidator::DEFAULT_ERROR
-        end
-      end
-
-      context 'defined on the instance' do
-        it 'translates the specified error' do
-          validator.default_error = :accepted
-          validator.validate(person)
-          person.errors.to_a.should == ['Email must be accepted']
-        end
-      end
-    end
   end
 end
