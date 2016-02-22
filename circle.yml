@@ -1,17 +1,15 @@
 dependencies:
   override:
-    - 'rvm-exec 1.9.3-p551 ./ci.sh'
-    - 'rvm-exec 2.0.0-p645 ./ci.sh'
-    - 'rvm-exec 2.1.5 ./ci.sh'
-    - 'rvm-exec 2.2.0 ./ci.sh'
-    - 'rvm-exec jruby-9.0.4.0 ./ci.sh'
-    - 'rvm-exec rbx-2.5.2 ./ci.sh'
+    - 'rvm-exec 1.9.3-p551 ./ci.sh deps'
+    - 'rvm-exec 2.1.7 ./ci.sh deps'
+    - 'rvm-exec 2.2.3 ./ci.sh deps'
+    - 'rvm-exec jruby-9.0.4.0 ./ci.sh deps'
+    - 'rvm-exec rbx-2.5.2 ./ci.sh deps'
 
 test:
   override:
-    - 'rvm-exec 1.9.3-p551 bundle exec rake'
-    - 'rvm-exec 2.0.0-p645 bundle exec rake'
-    - 'rvm-exec 2.1.5 bundle exec rake'
-    - 'rvm-exec 2.2.0 bundle exec rake'
-    - 'rvm-exec jruby-9.0.4.0 bundle exec rake'
-    - 'rvm-exec rbx-2.5.2 bundle exec rake'
+    - 'rvm-exec 1.9.3-p551 ./ci.sh spec'
+    - 'rvm-exec 2.1.7 ./ci.sh spec'
+    - 'rvm-exec 2.2.3 ./ci.sh spec'
+    - 'rvm-exec jruby-9.0.4.0 ./ci.sh spec'
+    - 'rvm-exec rbx-2.5.2 ./ci.sh spec'
