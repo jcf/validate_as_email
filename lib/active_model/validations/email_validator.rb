@@ -4,17 +4,24 @@ require 'mail'
 module ActiveModel
   module Validations
     class EmailValidator < EachValidator
-      attr_reader :record, :attribute, :value, :email, :tree
+      attr_reader :record, :attribute, :value, :email
 
       def validate_each(record, attribute, value)
         @record, @attribute, @value = record, attribute, value
 
         @email = Mail::Address.new(value)
-        @tree  = email.__send__(:tree)
 
         add_error unless valid?
       rescue Mail::Field::ParseError
         add_error
+      end
+
+      def domain_parts
+        @domain_parts ||= if email.domain
+                            email.domain.split('.')
+                          else
+                            []
+                          end
       end
 
       private
@@ -28,7 +35,7 @@ module ActiveModel
       end
 
       def domain_has_more_than_one_atom?
-        tree.domain.dot_atom_text.elements.length > 1
+        domain_parts.length > 1
       end
 
       def add_error
