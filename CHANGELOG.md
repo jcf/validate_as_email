@@ -1,3 +1,7 @@
+# v3.0.0
+
+- Avoid use of Mail::Address internals (namely calling `tree`).
+
 # v2.1.0
 
 - Only autoload RSpec matcher if `RSpec::Matchers` has been defined.
