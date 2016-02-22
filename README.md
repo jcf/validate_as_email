@@ -1,6 +1,4 @@
-# Validate as Email
-
-[![Build Status](https://travis-ci.org/listora/validate_as_email.png?branch=master)](https://travis-ci.org/listora/validate_as_email)
+# Validate as Email [![Circle CI](https://circleci.com/gh/jcf/validate_as_email.svg?style=svg)](https://circleci.com/gh/jcf/validate_as_email)
 
 Validation of email addresses via the excellent Mail gem that is
 available in all Rails 3 and 4 applications.
