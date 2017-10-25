@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 require 'mail'
+require 'validate_as_email/blacklisted_prefixes'
 
 module ActiveModel
   module Validations
@@ -12,7 +13,11 @@ module ActiveModel
         @email = Mail::Address.new(value)
         @parse  = email.__send__(:parse, email.address)
 
-        add_error unless valid?
+        if valid?
+          add_error(:prefix) if prefix_blacklisted?
+        else
+          add_error
+        end
       rescue Mail::Field::ParseError
         add_error
       end
@@ -37,12 +42,29 @@ module ActiveModel
         parse.local + "@" + parse.domain == value
       end
 
-      def add_error
+      def add_error(error = :invalid)
         if message = options[:message]
           record.errors[attribute] << message
         else
-          record.errors.add(attribute, :invalid)
+          record.errors.add(attribute, error)
         end
+      end
+
+      def prefix_blacklisted?
+        ValidateAsEmail::BlacklistedPrefixes.list.include?(local_base)
+      end
+
+      def local_base
+        local = parse.local
+        domain = parse.domain
+        separator = '+'
+
+        if domain == 'gmail.com'
+          # Gmail ignores periods. If they signed up with periods initially, this won’t catch it
+          local = local.delete('.')
+        end
+
+        local.gsub(/#{Regexp.escape(separator)}.*/, '')
       end
     end
 
