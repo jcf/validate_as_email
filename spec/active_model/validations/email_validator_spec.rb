@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ActiveModel::Validations::EmailValidator do
-  let(:person) { Person.new(email: 'invalid') }
+  let(:person) { Person.new(email: 'invalid_format') }
 
   let(:options) { {attributes: [:email]} }
 
@@ -78,6 +78,28 @@ describe ActiveModel::Validations::EmailValidator do
         described_class.any_instance.stub(:valid?).and_raise(Mail::Field::ParseError.new(Mail::AddressList, "", nil))
         validator.validate(person)
         expect(person.errors.to_a).to match_array ['Email is invalid']
+      end
+    end
+
+    context 'when email prefix is blacklisted' do
+      before do
+        person.email = 'help@logi.cl'
+      end
+
+      it 'adds a symbol to errors for I18n lookup' do
+        validator.validate(person)
+        expect(person.errors.to_a).to be_present
+      end
+    end
+
+    context 'when email prefix is blacklisted - case insensitive' do
+      before do
+        person.email = 'HELP@logi.cl'
+      end
+
+      it 'adds a symbol to errors for I18n lookup' do
+        validator.validate(person)
+        expect(person.errors.to_a).to be_present
       end
     end
   end
