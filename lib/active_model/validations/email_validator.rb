@@ -51,7 +51,7 @@ module ActiveModel
       end
 
       def prefix_blacklisted?
-        ValidateAsEmail::BlacklistedPrefixes.list.include?(local_base)
+        ValidateAsEmail::BlacklistedPrefixes.list.include?(local_base.downcase)
       end
 
       def local_base
