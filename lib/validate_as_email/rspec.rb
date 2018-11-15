@@ -1,4 +1,3 @@
-require 'rspec/rails/extensions/active_record/base'
 # Adds a custom matcher to RSpec to make it easier to make sure your email
 # column is valid.
 #
