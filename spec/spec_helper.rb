@@ -6,7 +6,6 @@ rescue LoadError
 end
 
 require 'validate_as_email'
-require 'rspec/rails/extensions/active_record/base'
 
 Dir.glob(File.expand_path('../support/**/*.rb', __FILE__)) { |file| require file }
 
