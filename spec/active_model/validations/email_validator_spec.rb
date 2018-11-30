@@ -125,5 +125,15 @@ describe ActiveModel::Validations::EmailValidator do
       end
     end
 
+    context 'when email has to consecutive dots in the address' do
+      before do
+        person.email = 'dwight..schrute@change.org'
+      end
+
+      it 'adds a symbol to errors for I18n lookup' do
+        validator.validate(person)
+        expect(person.errors.to_a).to be_present
+      end
+    end
   end
 end
