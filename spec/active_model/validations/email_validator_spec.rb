@@ -114,7 +114,7 @@ describe ActiveModel::Validations::EmailValidator do
       end
     end
 
-    context 'when email has to consecutive dots in the domain' do
+    context 'when email has two consecutive dots in the domain' do
       before do
         person.email = 'dwight@change..org'
       end
@@ -125,7 +125,7 @@ describe ActiveModel::Validations::EmailValidator do
       end
     end
 
-    context 'when email has to consecutive dots in the address' do
+    context 'when email has two consecutive dots in the address' do
       before do
         person.email = 'dwight..schrute@change.org'
       end
