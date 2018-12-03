@@ -103,11 +103,31 @@ describe ActiveModel::Validations::EmailValidator do
       end
     end
 
-
-
     context 'when email prefix is blacklisted - case insensitive' do
       before do
         person.email = 'HELP@logi.cl'
+      end
+
+      it 'adds a symbol to errors for I18n lookup' do
+        validator.validate(person)
+        expect(person.errors.to_a).to be_present
+      end
+    end
+
+    context 'when email has two consecutive dots in the domain' do
+      before do
+        person.email = 'dwight@change..org'
+      end
+
+      it 'adds a symbol to errors for I18n lookup' do
+        validator.validate(person)
+        expect(person.errors.to_a).to be_present
+      end
+    end
+
+    context 'when email has two consecutive dots in the address' do
+      before do
+        person.email = 'dwight..schrute@change.org'
       end
 
       it 'adds a symbol to errors for I18n lookup' do
