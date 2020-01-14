@@ -25,10 +25,13 @@ module ActiveModel
       private
 
       def valid?
-        !!(domain_and_address_present? &&
-           domain_has_more_than_one_atom? &&
-           local_plus_domain_equals_to_value? &&
-          !email_has_consecutive_dots?)
+        !!(
+          domain_and_address_present? &&
+          domain_has_more_than_one_atom? &&
+          local_plus_domain_equals_to_value? &&
+          !email_has_consecutive_dots? &&
+          !domain_starts_with_dot?
+        )
       end
 
       def domain_and_address_present?
@@ -45,6 +48,10 @@ module ActiveModel
 
       def email_has_consecutive_dots?
         email.address.match(/[.]{2,}/)
+      end
+
+      def domain_starts_with_dot?
+        parse.domain.start_with?('.')
       end
 
       def add_error(error = :invalid)
