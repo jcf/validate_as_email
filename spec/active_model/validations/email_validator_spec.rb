@@ -135,5 +135,16 @@ describe ActiveModel::Validations::EmailValidator do
         expect(person.errors.to_a).to be_present
       end
     end
+
+    context 'when email has a domain starting with a dot' do
+      before do
+        person.email = 'ola2122008@.ru'
+      end
+
+      it 'adds a symbol to errors for I18n lookup' do
+        validator.validate(person)
+        expect(person.errors.to_a).to be_present
+      end
+    end
   end
 end
