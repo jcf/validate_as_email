@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 require 'mail'
-require 'validate_as_email/blacklisted_prefixes'
+require 'validate_as_email/email_blocklists'
 
 module ActiveModel
   module Validations
@@ -63,7 +63,7 @@ module ActiveModel
       end
 
       def prefix_blacklisted?
-        ValidateAsEmail::BlacklistedPrefixes.list.include?(local_base.downcase)
+        ValidateAsEmail::EmailBlocklists.local_part_list.include?(local_base.downcase)
       end
 
       def local_base
