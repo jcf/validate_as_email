@@ -14,7 +14,7 @@ module ActiveModel
         @parse  = email.__send__(:parse, email.address)
 
         if valid?
-          add_error(:prefix) if prefix_blacklisted?
+          add_error(:prefix) if prefix_blocklisted?
         else
           add_error
         end
@@ -62,7 +62,7 @@ module ActiveModel
         end
       end
 
-      def prefix_blacklisted?
+      def prefix_blocklisted?
         ValidateAsEmail::EmailBlocklists.local_part_list.include?(local_base.downcase)
       end
 
