@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 require 'mail'
-require 'validate_as_email/blacklisted_prefixes'
+require 'validate_as_email/email_blocklists'
 
 module ActiveModel
   module Validations
@@ -14,7 +14,8 @@ module ActiveModel
         @parse  = email.__send__(:parse, email.address)
 
         if valid?
-          add_error(:prefix) if prefix_blacklisted?
+          add_error(:prefix) if prefix_blocklisted?
+          add_error if domain_blocklisted?
         else
           add_error
         end
@@ -62,8 +63,12 @@ module ActiveModel
         end
       end
 
-      def prefix_blacklisted?
-        ValidateAsEmail::BlacklistedPrefixes.list.include?(local_base.downcase)
+      def prefix_blocklisted?
+        ValidateAsEmail::EmailBlocklists.local_part_list.include?(local_base.downcase)
+      end
+
+      def domain_blocklisted?
+        ValidateAsEmail::EmailBlocklists.domain_list.include?(parse.domain)
       end
 
       def local_base

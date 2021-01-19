@@ -1,0 +1,3 @@
+[submodule "config/email_blocklists"]
+	path = config/email_blocklists
+	url = git@github.com:change/email_blocklists.git

@@ -81,7 +81,7 @@ describe ActiveModel::Validations::EmailValidator do
       end
     end
 
-    context 'when email prefix is blacklisted' do
+    context 'when email prefix is blocklisted' do
       before do
         person.email = 'help@logi.cl'
       end
@@ -92,7 +92,7 @@ describe ActiveModel::Validations::EmailValidator do
       end
     end
 
-    context 'when blacklisted email prefix uses an extension' do
+    context 'when blocklisted email prefix uses an extension' do
       before do
         person.email = 'help+testing@logi.cl'
       end
@@ -103,7 +103,7 @@ describe ActiveModel::Validations::EmailValidator do
       end
     end
 
-    context 'when email prefix is blacklisted - case insensitive' do
+    context 'when email prefix is blocklisted - case insensitive' do
       before do
         person.email = 'HELP@logi.cl'
       end

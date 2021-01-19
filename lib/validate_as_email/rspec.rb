@@ -39,6 +39,8 @@ RSpec::Matchers.define(:have_a_valid_email_address_for) do |column_name|
       @b
       example.com
       8.8.8.8
+      admin@gmail.com
+      mark@abcmail.email
     ).each do |invalid|
       klass.send("#{column_name}=", invalid)
       klass.should have(1).error_on(column_name)
