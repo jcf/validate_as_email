@@ -15,6 +15,7 @@ module ActiveModel
 
         if valid?
           add_error(:prefix) if prefix_blocklisted?
+          add_error if domain_blocklisted?
         else
           add_error
         end
@@ -64,6 +65,10 @@ module ActiveModel
 
       def prefix_blocklisted?
         ValidateAsEmail::EmailBlocklists.local_part_list.include?(local_base.downcase)
+      end
+
+      def domain_blocklisted?
+        ValidateAsEmail::EmailBlocklists.domain_list.include?(parse.domain)
       end
 
       def local_base
