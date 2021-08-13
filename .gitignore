@@ -1,7 +1,7 @@
 *.gem
 *.rbc
 *.swp
-*emfile.lock
+Gemfile.lock
 .bundle
 .config
 .yardoc
