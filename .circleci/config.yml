@@ -45,15 +45,30 @@ jobs:
       - store_artifacts:
           path: log
 
+  build_and_publish_gem:
+    working_directory: ~/change/change_eda_ruby
+    machine:
+      docker_layer_caching: true
+    steps:
+      - checkout
+      - run:
+          name: Checkout submodules
+          command: |
+            git submodule sync
+            git submodule update --init
+      - gpr-publish/build_gem:
+          gem_name: validate_as_email
+      - gpr-publish/publish_gem:
+          gem_name: validate_as_email
+
 workflows:
   version: 2
 
   test_and_publish:
     jobs:
       - run_tests
-      - gpr-publish/build_and_publish_gem:
+      - build_and_publish_gem:
           context: circleci-gpr
-          gem_name: validate_as_email
           filters:
             branches:
               only:
