@@ -1,0 +1,77 @@
+version: 2.1
+
+orbs:
+  gpr-publish: change/gpr-publish@1.0.0
+
+jobs:
+  run_tests:
+    parallelism: 1
+    working_directory: ~/change/validate_as_email
+    docker:
+      - image: circleci/ruby:2.6.5
+    steps:
+      - checkout
+      - run:
+          name: Checkout submodules
+          command: |
+            git submodule sync
+            git submodule update --init
+      - restore_cache:
+          key: v1-bundle-{{ checksum "validate_as_email.gemspec" }}
+      - run:
+          name: Install gems
+          command: bundle install --path vendor/bundle
+      - save_cache:
+          key: v1-bundle-{{ checksum "validate_as_email.gemspec" }}
+          paths:
+            - vendor/bundle
+      - run:
+          name: Run tests
+          command: |
+            TEST_FILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+            printf "\nTest files:\n$TEST_FILES\n\n"
+            bundle exec rspec --color \
+                              --format documentation \
+                              --profile \
+                              --drb \
+                              --format RspecJunitFormatter \
+                              --out log/test_results/rspec.xml \
+                              --format progress \
+                              $TEST_FILES
+          environment:
+            RAILS_ENV: test
+      - store_test_results:
+          path: log/test_results/
+      - store_artifacts:
+          path: log
+
+  build_and_publish_gem:
+    working_directory: ~/change/change_eda_ruby
+    machine:
+      docker_layer_caching: true
+    steps:
+      - checkout
+      - run:
+          name: Checkout submodules
+          command: |
+            git submodule sync
+            git submodule update --init
+      - gpr-publish/build_gem:
+          gem_name: validate_as_email
+      - gpr-publish/publish_gem:
+          gem_name: validate_as_email
+
+workflows:
+  version: 2
+
+  test_and_publish:
+    jobs:
+      - run_tests
+      - build_and_publish_gem:
+          context: circleci-gpr
+          filters:
+            branches:
+              only:
+                - main
+          requires:
+            - run_tests
